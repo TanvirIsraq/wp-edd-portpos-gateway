@@ -23,7 +23,7 @@ This plugin integrates the PortPos payment gateway with Easy Digital Downloads (
 
 = Requirements =
 * Easy Digital Downloads 3.0 or higher.
-* Store currency set to BDT (Bangladeshi Taka).
+* Store currency can be BDT (Bangladeshi Taka) or any world currency supported by PortPos.
 * A valid PortPos account and API keys.
 
 == Installation ==
@@ -40,8 +40,7 @@ This plugin integrates the PortPos payment gateway with Easy Digital Downloads (
 = Does it support mobile banking? =
 Yes, it supports all mobile banking methods provided by PortPos, including bKash, Nagad, and Rocket.
 
-= Can I use it for international currencies? =
-PortPos primarily focuses on BDT. While the API supports other currencies, this plugin is optimized and restricted for BDT to ensure compliance with local banking regulations.
+Yes. PortPos API v2 supports over 160 world currencies. This plugin automatically detects your store's currency and passes it to the gateway. Note that settlement to your local bank account will still occur in BDT after conversion by PortPos.
 
 == Screenshots ==
 
@@ -50,8 +49,11 @@ PortPos primarily focuses on BDT. While the API supports other currencies, this 
 
 == Changelog ==
 
+= 1.0.2 =
+* Added support for multiple currencies (USD, etc.) with automatic conversion.
+* Refined checkout label to include payment method hints (Cards, bKash, Nagad, etc.).
+* Standardized file structure for WordPress.org compliance.
+* Improved security with better sanitization and whitelisting.
+* Fixed raw HTML escaping issues on the checkout page.
+
 = 1.0.0 =
-* Initial release.
-* Added support for PortPos API v2.
-* Implemented IPN and Return validation.
-* Added dual integration method: Redirect and Popup/Overlay.

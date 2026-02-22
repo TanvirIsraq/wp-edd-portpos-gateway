@@ -38,6 +38,10 @@ class EDD_PortPos_Gateway
 
         // Whitelist PortPos for safe redirects
         add_filter('allowed_redirect_hosts', array($this, 'whitelist_portpos_domains'));
+
+        // Ensure the purchase button doesn't show the extended hint text
+        add_filter('edd_checkout_button_purchase_label', array($this, 'clean_purchase_button_label'), 999, 1);
+        add_filter('edd_purchase_button_text', array($this, 'clean_purchase_button_label'), 999, 1);
     }
 
     /**
@@ -170,12 +174,7 @@ class EDD_PortPos_Gateway
      */
     public function add_checkout_icons($label)
     {
-        $html = '<span class="edd-portpos-gateway-label">' . esc_html($label) . '</span>';
-        $html .= '<span class="edd-portpos-gateway-icons" style="margin-left: 10px; vertical-align: middle;">';
-        $html .= '<small style="color: #666; font-size: 11px;">' . esc_html__('(Cards, bKash, Nagad, etc.)', 'edd-portpos-gateway') . '</small>';
-        $html .= '</span>';
-
-        return $html;
+        return $label . ' (Cards, bKash, Nagad, etc.)';
     }
 
     /**
@@ -201,11 +200,6 @@ class EDD_PortPos_Gateway
 
         if (empty($app_key) || empty($secret_key)) {
             edd_set_error('missing_keys', esc_html__('PortPos API keys are not configured.', 'edd-portpos-gateway'));
-            edd_send_back_to_checkout('?payment-mode=' . esc_attr($purchase_data['post_data']['edd-gateway']));
-        }
-
-        if (edd_get_currency() !== 'BDT') {
-            edd_set_error('invalid_currency', esc_html__('PortPos only supports BDT currency. Please update your store settings.', 'edd-portpos-gateway'));
             edd_send_back_to_checkout('?payment-mode=' . esc_attr($purchase_data['post_data']['edd-gateway']));
         }
 
@@ -277,7 +271,7 @@ class EDD_PortPos_Gateway
         return array(
             'order' => array(
                 'amount' => number_format($purchase_data['price'], 2, '.', ''),
-                'currency' => 'BDT',
+                'currency' => edd_get_currency(),
                 'redirect_url' => add_query_arg(array('edd-listener' => 'portpos-return', 'payment_id' => $payment_id), home_url('/')),
                 'ipn_url' => add_query_arg(array('edd-listener' => 'portpos-ipn', 'payment_id' => $payment_id), home_url('/')),
             ),
@@ -441,5 +435,17 @@ class EDD_PortPos_Gateway
 
             return false;
         }
+    }
+
+    /**
+     * Clean the purchase button label (remove hints for the button)
+     *
+     * @param string $label The current button label.
+     * @return string
+     */
+    public function clean_purchase_button_label($label)
+    {
+        // Remove the hint part "(Cards, bKash, Nagad, etc.)" from the button
+        return str_replace(' (Cards, bKash, Nagad, etc.)', '', $label);
     }
 }
