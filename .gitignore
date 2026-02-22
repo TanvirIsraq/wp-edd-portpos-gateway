@@ -15,7 +15,7 @@ Thumbs.db
 *.log
 
 # Workspace
-.code-workspace
+*.code-workspace
 .vscode/
 
 # Archives
@@ -27,5 +27,3 @@ Thumbs.db
 brain/
 task.md
 implementation_plan.md
-ARCHITECTURE.md
-SUBMISSION_GUIDE.md

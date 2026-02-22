@@ -1,0 +1,7 @@
+# Ignore internal files from git archive / GitHub zip
+.agent/ export-ignore
+.gitignore export-ignore
+.gitattributes export-ignore
+*.code-workspace export-ignore
+README.md export-ignore
+files.txt export-ignore

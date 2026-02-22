@@ -230,7 +230,7 @@ class EDD_PortPos_Gateway
             edd_send_back_to_checkout('?payment-mode=' . esc_attr($purchase_data['post_data']['edd-gateway']));
         }
 
-        $api = new PortPos_API($app_key, $secret_key, $is_sandbox);
+        $api = new EDD_PortPos_API($app_key, $secret_key, $is_sandbox);
         $params = $this->prepare_api_params($payment_id, $purchase_data);
 
         $result = $api->create_invoice($params);
@@ -413,7 +413,7 @@ class EDD_PortPos_Gateway
             $amount = edd_get_payment_amount($payment_id);
         }
 
-        $api = new PortPos_API($app_key, $secret_key, edd_is_test_mode());
+        $api = new EDD_PortPos_API($app_key, $secret_key, edd_is_test_mode());
         $result = $api->verify_transaction($invoice_id, $amount);
 
         if (isset($result['status']) && 200 === (int) $result['status'] && 'ACCEPTED' === $result['data']['status']) {

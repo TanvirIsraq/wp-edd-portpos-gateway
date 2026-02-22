@@ -9,7 +9,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class PortPos_API
+class EDD_PortPos_API
 {
 
     /**
