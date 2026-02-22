@@ -15,7 +15,7 @@ Thumbs.db
 *.log
 
 # Workspace
-.code-workspace
+*.code-workspace
 .vscode/
 
 # Archives
