@@ -3,7 +3,7 @@
  * Plugin Name:       EDD PortPos Gateway
  * Plugin URI:        https://github.com/tanvirisraq/wp-edd-portpos-gateway
  * Description:       Integrates PortPos payment gateway with Easy Digital Downloads.
- * Version:           1.0.0
+ * Version:           1.0.2
  * Author:            Tanvir Israq
  * Author URI:        https://www.github.com/TanvirIsraq
  * License:           GPLv2 or later
@@ -20,7 +20,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants
-define('EDD_PORTPOS_VERSION', '1.0.0');
+define('EDD_PORTPOS_VERSION', '1.0.2');
 define('EDD_PORTPOS_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('EDD_PORTPOS_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('EDD_PORTPOS_ID', 'portpos');
