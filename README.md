@@ -26,4 +26,4 @@ This plugin adds PortPos as a payment gateway to Easy Digital Downloads (EDD). I
 4. Enable **PortPos** and enter your API credentials in the PortPos settings section.
 
 ## Support
-For issues or feature requests, please contact the developer or refer to the technical documentation in `ARCHITECTURE.md`.
+For issues or feature requests, please contact the developer through the GitHub issue tracker.
