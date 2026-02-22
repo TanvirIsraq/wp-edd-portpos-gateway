@@ -27,3 +27,4 @@ This plugin adds PortPos as a payment gateway to Easy Digital Downloads (EDD). I
 
 ## Support
 For issues or feature requests, please contact the developer through the GitHub issue tracker.
+
